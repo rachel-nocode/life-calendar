@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weeks of My Life</title>
+    <meta name="description" content="Visualize the weeks of your life - a reminder to make every week count">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Age Input Section -->
+        <div id="input-section" class="section active">
+            <h1>WEEKS OF MY LIFE</h1>
+            <p class="subtitle">How old are you?</p>
+            
+            <div class="knob-container">
+                <svg class="knob-svg" viewBox="0 0 200 200">
+                    <!-- Background circle -->
+                    <circle cx="100" cy="100" r="80" class="knob-bg"/>
+                    <!-- Progress arc -->
+                    <path id="knob-arc" class="knob-arc" d=""/>
+                    <!-- Knob handle -->
+                    <circle id="knob-handle" class="knob-handle" cx="100" cy="20" r="12"/>
+                    <!-- Center circle -->
+                    <circle cx="100" cy="100" r="60" class="knob-center"/>
+                </svg>
+                <div class="age-display" id="age-display">25</div>
+            </div>
+            
+            <button id="show-calendar" class="btn-primary">Show My Life Calendar</button>
+        </div>
+
+        <!-- Calendar Section -->
+        <div id="calendar-section" class="section">
+            <div class="calendar-header">
+                <h1>WEEKS OF MY LIFE</h1>
+                <button id="back-btn" class="btn-secondary">← Change Age</button>
+            </div>
+
+            <!-- Week Streak -->
+            <div class="streak-shell" id="streak-shell" role="region" aria-label="Week Streak">
+                <div class="streak-head">
+                    <div class="streak-title">
+                        <span class="streak-badge">🔥 Week Streak</span>
+                        <span class="streak-sub">Don't let this week blur into the others.</span>
+                    </div>
+                    <button class="streak-icon-btn" id="streak-dismiss-btn" type="button" aria-label="Hide Week Streak">✕</button>
+                </div>
+
+                <div class="streak-hero-row">
+                    <div class="streak-count">
+                        <span class="streak-count-num" id="streak-count-num">0</span>
+                        <span class="streak-count-label" id="streak-count-label">weeks in a row</span>
+                    </div>
+                    <div class="streak-meta" id="streak-meta"></div>
+                </div>
+
+                <label class="streak-label" id="streak-week-label" for="streak-input">What made this week count?</label>
+                <textarea id="streak-input" class="streak-textarea" rows="2" maxlength="200" placeholder="One thing that made this week yours..."></textarea>
+                <div class="streak-row">
+                    <button class="streak-btn streak-btn-primary" id="streak-log-btn" type="button">🔥 Log this week</button>
+                    <button class="streak-btn" id="streak-idea-btn" type="button">Need an idea</button>
+                    <button class="streak-btn streak-btn-tweet" id="streak-share-btn" type="button">𝕏 Share streak</button>
+                </div>
+                <div class="streak-toast" id="streak-toast" aria-live="polite"></div>
+            </div>
+            <button id="streak-show-btn" class="streak-show-btn" type="button" hidden>🔥 Show Week Streak</button>
+            
+            <div class="calendar-info">
+                <div class="info-item">
+                    <span class="info-label">Your Age:</span>
+                    <span class="info-value" id="display-age">25</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Weeks Lived:</span>
+                    <span class="info-value lived" id="weeks-lived">1,300</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Weeks Remaining:</span>
+                    <span class="info-value remaining" id="weeks-remaining">3,276</span>
+                </div>
+            </div>
+
+            <div class="calendar-wrapper">
+                <div class="calendar-grid-container">
+                    <div class="year-labels" id="year-labels"></div>
+                    <div class="calendar-grid" id="calendar-grid"></div>
+                    <div class="week-labels">
+                        <div class="week-label-top">WEEK OF THE YEAR →</div>
+                        <div class="week-numbers">
+                            <span>1</span>
+                            <span>13</span>
+                            <span>26</span>
+                            <span>39</span>
+                            <span>52</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-message">
+                <p><strong>4,576 WEEKS TOTAL - MAKE IT COUNT!</strong></p>
+            </div>
+
+            <!-- Viral Action Bar — feature buttons mount here -->
+            <div class="action-bar" id="action-bar">
+                <button class="action-btn" id="btn-share-card" type="button">📸 Share Card</button>
+                <button class="action-btn" id="btn-shocking-stat" type="button">💀 Shocking Stat</button>
+                <button class="action-btn" id="btn-milestones" type="button">🏆 Milestones</button>
+                <button class="action-btn" id="btn-activity" type="button">⏳ Where Time Goes</button>
+                <button class="action-btn" id="btn-relationships" type="button">❤️ Visits Left</button>
+                <button class="action-btn" id="btn-seasons" type="button">🎄 Seasons Lived</button>
+                <button class="action-btn" id="btn-memento" type="button">🪦 Memento Mori</button>
+                <button class="action-btn" id="btn-bucket" type="button">✨ Bucket List</button>
+                <button class="action-btn" id="btn-events" type="button">📍 Life Events</button>
+                <button class="action-btn" id="btn-generations" type="button">👨‍👩‍👧 Generations</button>
+                <button class="action-btn" id="btn-reflect" type="button">📝 This Week</button>
+                <button class="action-btn" id="btn-mood" type="button">🟩 Mood Heatmap</button>
+                <button class="action-btn" id="btn-sharelink" type="button">🔗 Share Link</button>
+                <button class="action-btn" id="btn-global" type="button">🌍 Global Stats</button>
+                <button class="action-btn" id="btn-challenge" type="button">🔥 Challenge</button>
+                <button class="action-btn" id="btn-capsule" type="button">⏰ Time Capsule</button>
+                <button class="action-btn" id="btn-leaderboard" type="button">📊 Leaderboard</button>
+                <button class="action-btn action-btn-tweet" id="btn-tweet" type="button">𝕏 Tweet It</button>
+                <button class="action-btn action-btn-tweet" id="btn-thread" type="button">🧵 Thread</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Modal — reused by every feature -->
+    <div class="modal-overlay" id="modal-overlay" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-head">
+                <h2 class="modal-title" id="modal-title">Title</h2>
+                <button class="modal-close" id="modal-close" type="button" aria-label="Close">✕</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Offscreen canvas for PNG export -->
+    <canvas id="export-canvas" width="1200" height="675" hidden></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
